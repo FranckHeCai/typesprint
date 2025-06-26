@@ -12,7 +12,7 @@ const Text = () => {
       const currentWord = words[currentWordIndex];
       if (event.key === " ") {
 
-        if(userInput.length === currentWord.length){
+        if(userInput === currentWord){
           console.log('next word');
           setCurrentWordIndex((prev) => prev + 1)
           setUserInput("")
@@ -39,19 +39,28 @@ const Text = () => {
   
   return (
     <div className="flex flex-col gap-2 justify-center items-center">
-      {userInput}
       <div className="flex gap-2">
         {
           words.map((word, wordIndex) => (
             <span
               key={wordIndex}
               className={`text-2xl font-bold
-                ${wordIndex === currentWordIndex ? "text-gray-500" : "text-gray-300"}`}
+                ${wordIndex < currentWordIndex 
+                    ? "text-sky-500" 
+                    : "text-gray-300"}`}
             >
               {
                 word.split("").map((char, charIndex) => (
                   <span
                     key={charIndex}
+                    className={`${wordIndex === currentWordIndex
+                        ? userInput[charIndex] === char
+                          ? "text-sky-500"
+                          : userInput[charIndex] 
+                            ? "text-red-500"
+                            : "text-gray-300"
+                        : ""
+                    }`}
                   >
                     {char}
                   </span>
