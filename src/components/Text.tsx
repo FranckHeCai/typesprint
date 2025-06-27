@@ -8,8 +8,7 @@ const Text = () => {
     "sed", "do", "eiusmod", "tempor", "incididunt"]
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
   const [userInput, setUserInput] = useState("")
-  const {gameStarted, setGameStarted, setScore} = useTypeStore(state => state)
-  let {score} = useTypeStore(state => state)
+  const {gameStarted, setGameStarted, setScore, score} = useTypeStore(state => state)
   const regex = /[a-zA-Z]/
 
     const checkKey = (event: KeyboardEvent) => {
@@ -20,10 +19,11 @@ const Text = () => {
       if (event.key === " ") {
 
         if(userInput === currentWord){
+          const newScore = score + 1
           console.log('next word');
           setCurrentWordIndex((prev) => prev + 1)
           setUserInput("")
-          setScore(score++)
+          setScore(newScore)
         }
         event.preventDefault();
         return;
@@ -53,7 +53,7 @@ const Text = () => {
           words.map((word, wordIndex) => (
             <span
               key={wordIndex}
-              className={`text-2xl font-bold relative
+              className={`text-2xl font-medium relative
                 ${wordIndex < currentWordIndex 
                     ? "text-sky-500" 
                     : "text-zinc-300"}`}

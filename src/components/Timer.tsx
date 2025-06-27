@@ -2,16 +2,17 @@ import { useEffect, useState } from "react";
 import { useTypeStore } from "../store/store";
 
 const Timer = () => {
-  const [time, setTime] = useState(60)
-  const {gameStarted, setGameStarted} = useTypeStore(state => state)
+  const [time, setTime] = useState(5)
+  const {gameStarted, setGameStarted, setGameFinished} = useTypeStore(state => state)
 
   useEffect(()=>{
+
     if (gameStarted) {
+      setGameFinished(false)
       const timer = setInterval(() => {
         setTime(prev => {
           if (prev <= 1) {
-            clearInterval(timer);
-            setGameStarted(false);
+            clearInterval(timer)
             return 0;
           }
           return prev - 1;
@@ -20,6 +21,13 @@ const Timer = () => {
       return () => clearInterval(timer)
     }
   },[gameStarted])
+
+  useEffect(() => {
+    if (time === 0) {
+      setGameFinished(true)
+      setGameStarted(false)
+    }
+  }, [time, setGameFinished, setGameStarted]);
 
   return (
     <div>
