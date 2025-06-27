@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useTypeStore } from "../store/store";
 
 const Timer = () => {
-  const [time, setTime] = useState(5)
+  const [time, setTime] = useState(60)
   const {gameStarted, setGameStarted, setGameFinished} = useTypeStore(state => state)
 
   useEffect(()=>{

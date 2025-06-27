@@ -1,13 +1,15 @@
 import {useEffect, useState } from "react";
 import Timer from "./Timer";
 import { useTypeStore } from "../store/store";
+import { animeQuotes } from "../data";
 
 const Text = () => {
-  const words = [
-    "hola", "me", "llamo", "que", "tal", "como", "estas", "elit",
-    "sed", "do", "eiusmod", "tempor", "incididunt"]
+  // const words = [
+  //   "hola", "me", "llamo", "que", "tal", "como", "estas", "elit",
+  //   "sed", "do", "eiusmod", "tempor", "incididunt"]
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
   const [userInput, setUserInput] = useState("")
+  const [words, setWords] = useState<string[]>(animeQuotes[0])
   const {gameStarted, setGameStarted, setScore, score} = useTypeStore(state => state)
   const regex = /[a-zA-Z]/
 

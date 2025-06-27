@@ -6,3 +6,9 @@ export interface TimerState {
   score: number
   setScore: (score: number) => void
 }
+
+export type Quote = {
+  anime: string
+  character: string
+  quote: string
+}
