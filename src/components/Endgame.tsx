@@ -3,8 +3,8 @@ import { useTypeStore } from "../store/store";
 const Endgame = () => {
   const {score} = useTypeStore(state => state)
   return (
-    <div>
-      <h1>{score} WPM</h1>
+    <div className="text-3xl font-medium">
+      <p>{score} WPM</p>
     </div>
   );
 };
