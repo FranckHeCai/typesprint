@@ -1,5 +1,4 @@
-import {useCallback, useEffect, useState } from "react";
-import Timer from "./Timer";
+import {useEffect, useState } from "react";
 import { useTypeStore } from "../store/store";
 import { animeQuotes } from "../data";
 
